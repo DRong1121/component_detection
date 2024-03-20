@@ -1,0 +1,17 @@
+{
+  "Cargo": ["Cargo.toml"],
+  "Composer": ["composer.json"],
+  "Conan": ["conanfile.py"],
+  "Cpan_Cli": ["Makefile.PL", "Build.PL"],
+  "Dart_Pub": ["pubspec.yaml"],
+  "Gemlock": ["Gemfile"],
+  "Go_Mod_Cli": ["go.mod"],
+  "Leiningen": ["project.clj"],
+  "Maven_Pom": ["pom.xml"],
+  "Mix": ["mix.exs"],
+  "NPM_Cli": ["package.json"],
+  "Rebar": ["rebar.config"],
+  "Sbt": ["build.sbt"],
+  "Stack": ["stack.yaml"],
+  "Swift": ["Package.swift"]
+}
