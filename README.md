@@ -1,4 +1,4 @@
-# open-source software component detection
+# Open Source Software Component Detection
 
 Software Component Analysis (SCA) 软件成分分析
 
