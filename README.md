@@ -1,68 +1,56 @@
-# Open Source Software Component Detection
+# Open-Source Software Component Detection
 
-Software Component Analysis (SCA) 软件成分分析
-
-开源工具：  
+Open-Source Toolkits：  
 1. dependency-check  
    Homepage: https://github.com/jeremylong/DependencyCheck  
    File Analyzers: https://jeremylong.github.io/DependencyCheck/analyzers/index.html  
    CLI Params: https://jeremylong.github.io/DependencyCheck/dependency-check-cli/arguments.html  
    Analyzer Code: https://github.com/jeremylong/DependencyCheck/tree/main/core/src/main/java/org/owasp/dependencycheck/analyzer  
-   
 2. scancode  
    Homepage: https://github.com/nexB/scancode-toolkit  
    Package Code: https://github.com/nexB/scancode-toolkit/tree/develop/src/packagedcode
 
-商用工具：  
+Commercial Toolkit：  
 1. Synopsys Black Duck   
    Detectors: https://community.synopsys.com/s/document-item?bundleId=integrations-detect&topicId=components%2Fdetectors.html&_LANG=enus   
    Package Managers:  https://community.synopsys.com/s/document-item?bundleId=integrations-detect&topicId=packagemgrs%2Foverview.html&_LANG=enus  
 
-自研工具：
+Our Toolkit：
 1. Pre-prepared Tools:  
-   1）jdk-11.0.1_linux-x64_bin.tar.gz (https://www.oracle.com/hk/java/technologies/javase/jdk11-archive-downloads.html) ：下载后放置在docker目录下  
-   2）apache-maven-3.8.6-bin.tar.gz (https://maven.apache.org/download.cgi) ：下载后放置在docker目录下  
-   3）gradle-6.8.2-bin.zip (https://gradle.org/releases/) ：下载后放置在docker目录下  
-   4）flutter_linux_3.0.5-stable.tar.xz (https://docs.flutter.dev/development/tools/sdk/releases?tab=linux) ：下载后放置在docker目录下  
-   5）swift-5.7-RELEASE-ubuntu20.04.tar.gz (https://www.swift.org/download/) ：下载后放置在docker目录下  
-   6）rebar3 (https://github.com/erlang/rebar3) ：下载后解压，将解压后的目录(重命名为rebar3)放置在docker目录下  
-2. 运行&编译环境创建:  
-   自行安装docker，进入到本项目的docker目录下  
-   1）运行`docker build . -t sca_env:release`命令创建基础环境镜像  
-   2）运行`docker run --name sca -it sca_env:release`命令创建容器  
-   3）运行`docker exec -it sca /bin/bash`命令运行容器  
-3. 功能模块调用：  
-   启动运行sca容器，将本项目的core目录拷贝至容器中的/home目录下，并执行命令（仅一次）  
+   1）jdk-11.0.1_linux-x64_bin.tar.gz (https://www.oracle.com/hk/java/technologies/javase/jdk11-archive-downloads.html): download to the docker directory  
+   2）apache-maven-3.8.6-bin.tar.gz (https://maven.apache.org/download.cgi): download to the docker directory  
+   3）gradle-6.8.2-bin.zip (https://gradle.org/releases/): download to the docker directory  
+   4）flutter_linux_3.0.5-stable.tar.xz (https://docs.flutter.dev/development/tools/sdk/releases?tab=linux) : download to the docker directory  
+   5）swift-5.7-RELEASE-ubuntu20.04.tar.gz (https://www.swift.org/download/): download to the docker directory  
+   6）rebar3 (https://github.com/erlang/rebar3): download, rename to 'rebar3' in the docker directory  
+2. Setup the Running and Compilation Environment:  
+   Install docker, run command `cd component_detection/docker`  
+   1）run command `docker build . -t sca_env:release`  
+   2）run command `docker run --name sca -it sca_env:release`  
+   3）run command `docker exec -it sca /bin/bash`  
+3. Use the Toolkit:  
+   1) Start and execute the 'sca' container  
+   2) Copy the 'core' directory to the 'home' directory in the 'sca' container(using the `docker cp` command)  
+   3) Run the following command once  
    `find /home/core/executables -type f -print0 | xargs -0 dos2unix --`  
-   进入到/home/core目录下，运行命令（示例）   
+   4) Run the command `cd /home/core`, the following command is an example of the toolkit execution  
    `python3 scan.py -is_output=True -output_dir='../check_result' -check_dir='../extracted_folder/axios-0.19.2' -is_build=True -search_depth=1 -is_skip=False`  
-   参数说明  
-   | 参数名称      | 参数类型     | 是否必选      | 参数描述               |   
+   5) Execution parameters   
+   | Parameter Name      | Parameter Type     | Required      | Description               |   
    | :---------- | :---------- | :---------- | :-------------------- |     
-   | check_dir   | string      | 是           | 待测项目所在路径        |  
-   | is_output   | bool        | 否           | 是否以JSON文件形式输出检测结果，默认为False |    
-   | output_dir  | string      | 否           | 检测结果所在路径，默认为‘../check_result’ |    
-   | is_build    | bool        | 否           | 是否编译构建项目，默认为False             |   
-   | is_skip     | bool        | 否           | 是否跳过devDependencies，默认为False     |  
-   | search_depth| int         | 否           | 搜索深度，默认为3       |    
-   
-   其他说明  
+   | check_dir   | string      | True           | 待测项目所在路径        |  
+   | is_output   | bool        | False           | 是否以JSON文件形式输出检测结果，默认为False |    
+   | output_dir  | string      | False           | 检测结果所在路径，默认为‘../check_result’ |    
+   | is_build    | bool        | False           | 是否编译构建项目，默认为False             |   
+   | is_skip     | bool        | False           | 是否跳过devDependencies，默认为False     |  
+   | search_depth| int         | False           | 搜索深度，默认为3       |    
+   Other instructions:  
    1）check_dir为项目文件所在路径（建议使用绝对路径），不支持压缩文件检测。   
    2）is_build仅针对Bundler, Cargo, Composer, Conan, Cpan, Dart, Go, Gradle, Leiningen, Maven, Mix, NPM, Rebar3, Sbt, Stack和Swift管理的项目可以设置为True。   
    3）is_skip仅针对Composer, Dart和NPM管理的项目可进行设置。  
    4）当前检测功能仅支持Gradle管理的Java项目，不支持Andorid项目。  
-   
-   结果示例  
-   ![检测结果JSON文件](https://git.vulgraph.net:8000/dangrong/sca-2.0/-/blob/main/result.png "result")  
-   dep_result列表（依赖项条目列表）字段说明  
-     •  type: 包管理器类型 (required)  
-     •  namespace: 依赖项名称前缀 (optional)  
-     •  name: 依赖项名称 (required)  
-     •  version: 依赖项版本 (optional)  
-     •  language: 依赖项语言 (required)  
-   
-4. 当前功能模块支持的语言种类及检测模式：   
-   | 序号        | 语言       | 检测模式      |  配置文件      | 包管理器     | 是否自研      |   
+4. Supported Languages and Detection Types：   
+   | No.        | Language       | Detection Type      |  Config Files      | Package Managers     | 是否自研      |   
    | :---------- | :---------- | :---------- | :-------------------- | :---------- | :---------- |  
    | 1           | C/C++       | 编译、非编译   | conanfile.py, conan.lock | conan | 是     |   
    | 2           | C#          | 非编译        | packages.config, *.csproj, *.nuspec  | - | 是     |   
