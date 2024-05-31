@@ -44,12 +44,6 @@ Our Toolkit：
    | is_build    | bool        | False           | 是否编译构建项目，默认为False             |   
    | is_skip     | bool        | False           | 是否跳过devDependencies，默认为False     |  
    | search_depth| int         | False           | 搜索深度，默认为3       |    
-   
-   Other instructions:  
-   1）check_dir为项目文件所在路径（建议使用绝对路径），不支持压缩文件检测。   
-   2）is_build仅针对Bundler, Cargo, Composer, Conan, Cpan, Dart, Go, Gradle, Leiningen, Maven, Mix, NPM, Rebar3, Sbt, Stack和Swift管理的项目可以设置为True。   
-   3）is_skip仅针对Composer, Dart和NPM管理的项目可进行设置。  
-   4）当前检测功能仅支持Gradle管理的Java项目，不支持Andorid项目。
 
 4. Supported Languages and Detection Types：   
    | No.        | Language       | Detection Type      |  Config Files      | Package Managers     | 是否自研      |   
