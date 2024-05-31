@@ -33,39 +33,39 @@
    2）Copy the 'core' directory to the 'home' directory in the 'sca' container (using the `docker cp` command)  
    3）Run the following command once  
    `find /home/core/executables -type f -print0 | xargs -0 dos2unix --`  
-   4）Run the command `cd /home/core`, the following command is an example of the toolkit execution  
+   4）Run the command `cd /home/core`, the following command is an example of the toolkit execution command    
    `python3 scan.py -is_output=True -output_dir='../check_result' -check_dir='../extracted_folder/axios-0.19.2' -is_build=True -search_depth=1 -is_skip=False`  
    5）Execution parameters   
    | Parameter Name      | Parameter Type     | Is Required      | Description               |   
    | :---------- | :---------- | :---------- | :-------------------- |     
-   | check_dir   | string      | True           | Input project directory path (recommend the absolute path)        |  
-   | is_output   | bool        | False           | Whether to write the check result into JSON file, default: False |    
-   | output_dir  | string      | False           | Output root directory, default: ‘../check_result’ |    
-   | is_build    | bool        | False           | Whether to build the project, default: False             |   
-   | is_skip     | bool        | False           | Whether to skip devDependencies, default: False     |  
-   | search_depth| int         | False           | Search depth, default: 3 (root search depth == 0)      |
+   | check_dir   | string      | True            | Input project directory path (recommend the absolute file path) |  
+   | is_output   | bool        | False           | Whether to write the check result into JSON file, default: False|    
+   | output_dir  | string      | False           | Output result root directory, default: ‘../check_result’        |    
+   | is_build    | bool        | False           | Whether to build the project, default: False               |   
+   | is_skip     | bool        | False           | Whether to skip devDependencies, default: False            |  
+   | search_depth| int         | False           | Search depth, default: 3 (root search depth == 0)          |
    
-   6）Output result (demo) [result.png](https://github.com/DRong1121/software_component_detection/result.png)
+   6）Output result (demo) [result.png](https://github.com/DRong1121/software_component_detection/tree/main/result.png)
 
 4. Supported Languages and Detection Types：   
-   | No.        | Language       | Detection Type      |  Config Files      | Package Managers     |   
+   | No.        | Language       | Detection Mode(s)      |  Config File(s)      | Package Manager(s)     |   
    | :---------- | :---------- | :---------- | :-------------------- | :---------- |  
-   | 1           | C/C++       | 编译、非编译   | conanfile.py, conan.lock | conan |   
-   | 2           | C#          | 非编译        | packages.config, *.csproj, *.nuspec  | - |   
-   | 3           | Clojure     | 编译、非编译   | project.clj | lein |  
-   | 4           | Dart        | 编译、非编译   | pubspec.yaml, pubspec.lock | dart/flutter |  
-   | 5           | Elixir      | 编译、非编译   | mix.exs, mix.lock | mix |  
-   | 6           | Erlang      | 编译、非编译   | rebar.config | rebar3 |  
-   | 7           | Golang      | 编译、非编译   | go.mod, go.sum, Godeps.json, Gopkg.lock | go |  
-   | 8           | Haskell     | 编译、非编译   | stack.yaml, package.yaml, <package_name>.cabal | stack |  
-   | 9           | Java        | 编译、非编译   | pom.xml, build.gradle | maven, gradle |  
-   | 10          | Node JS     | 编译、非编译   | package.json, package-lock.json, npm-shrinkwrap.json, pnpm-lock.yaml, yarn.lock | npm |  
-   | 11          | Objective C | 非编译        | Podfile, Podfile.lock, *.podspec, Cartfile, Cartfile.resolved | - |  
-   | 12          | Perl        | 编译、非编译   | Makefile.PL, Build.PL, cpanfile | cpanm |  
-   | 13          | PHP         | 编译、非编译   | composer.json, composer.lock | composer |  
-   | 14          | Python      | 非编译        | environment.yml, setup.py, requirements.txt, Pipfile, Pipfile.lock, pyproject.toml, poetry.lock | - |   
-   | 15          | R           | 非编译        | DESCRIPTION, packrat.lock | - |   
-   | 16          | Ruby        | 编译、非编译   | Gemfile, Gemfile.lock, *.gemspec | gem, bundler |   
-   | 17          | Rust        | 编译、非编译   | Cargo.toml, Cargo.lock | cargo |   
-   | 18          | Scala       | 编译、非编译   | build.sbt, Dependencies.scala  | sbt, plugin: sbt-dependency-graph |   
-   | 19          | Swift       | 编译、非编译   | Package.swift, Package.resolved  | swift |  
+   | 1           | C/C++       | Build, Buildless   | conanfile.py, conan.lock | conan |   
+   | 2           | C#          | Buildless          | packages.config, *.csproj, *.nuspec  | - |   
+   | 3           | Clojure     | Build, Buildless   | project.clj | lein |  
+   | 4           | Dart        | Build, Buildless   | pubspec.yaml, pubspec.lock | dart/flutter |  
+   | 5           | Elixir      | Build, Buildless   | mix.exs, mix.lock | mix |  
+   | 6           | Erlang      | Build, Buildless   | rebar.config | rebar3 |  
+   | 7           | Golang      | Build, Buildless   | go.mod, go.sum, Godeps.json, Gopkg.lock | go |  
+   | 8           | Haskell     | Build, Buildless   | stack.yaml, package.yaml, <package_name>.cabal | stack |  
+   | 9           | Java        | Build, Buildless   | pom.xml, build.gradle | maven, gradle |  
+   | 10          | Node JS     | Build, Buildless   | package.json, package-lock.json, npm-shrinkwrap.json, pnpm-lock.yaml, yarn.lock | npm |  
+   | 11          | Objective C | Buildless          | Podfile, Podfile.lock, *.podspec, Cartfile, Cartfile.resolved | - |  
+   | 12          | Perl        | Build, Buildless   | Makefile.PL, Build.PL, cpanfile | cpanm |  
+   | 13          | PHP         | Build, Buildless   | composer.json, composer.lock | composer |  
+   | 14          | Python      | Buildless          | environment.yml, setup.py, requirements.txt, Pipfile, Pipfile.lock, pyproject.toml, poetry.lock | - |   
+   | 15          | R           | Buildless          | DESCRIPTION, packrat.lock | - |   
+   | 16          | Ruby        | Build, Buildless   | Gemfile, Gemfile.lock, *.gemspec | gem, bundler |   
+   | 17          | Rust        | Build, Buildless   | Cargo.toml, Cargo.lock | cargo |   
+   | 18          | Scala       | Build, Buildless   | build.sbt, Dependencies.scala  | sbt, plugin: sbt-dependency-graph |   
+   | 19          | Swift       | Build, Buildless   | Package.swift, Package.resolved  | swift |  
