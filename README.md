@@ -36,7 +36,7 @@ Our Toolkit：
    4) Run the command `cd /home/core`, the following command is an example of the toolkit execution  
    `python3 scan.py -is_output=True -output_dir='../check_result' -check_dir='../extracted_folder/axios-0.19.2' -is_build=True -search_depth=1 -is_skip=False`  
    5) Execution parameters   
-   | Parameter Name      | Parameter Type     | Required      | Description               |   
+   | Parameter Name      | Parameter Type     | Is Required      | Description               |   
    | :---------- | :---------- | :---------- | :-------------------- |     
    | check_dir   | string      | True           | 待测项目所在路径        |  
    | is_output   | bool        | False           | 是否以JSON文件形式输出检测结果，默认为False |    
@@ -44,11 +44,13 @@ Our Toolkit：
    | is_build    | bool        | False           | 是否编译构建项目，默认为False             |   
    | is_skip     | bool        | False           | 是否跳过devDependencies，默认为False     |  
    | search_depth| int         | False           | 搜索深度，默认为3       |    
+   
    Other instructions:  
    1）check_dir为项目文件所在路径（建议使用绝对路径），不支持压缩文件检测。   
    2）is_build仅针对Bundler, Cargo, Composer, Conan, Cpan, Dart, Go, Gradle, Leiningen, Maven, Mix, NPM, Rebar3, Sbt, Stack和Swift管理的项目可以设置为True。   
    3）is_skip仅针对Composer, Dart和NPM管理的项目可进行设置。  
-   4）当前检测功能仅支持Gradle管理的Java项目，不支持Andorid项目。  
+   4）当前检测功能仅支持Gradle管理的Java项目，不支持Andorid项目。
+
 4. Supported Languages and Detection Types：   
    | No.        | Language       | Detection Type      |  Config Files      | Package Managers     | 是否自研      |   
    | :---------- | :---------- | :---------- | :-------------------- | :---------- | :---------- |  
