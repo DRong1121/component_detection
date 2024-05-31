@@ -24,7 +24,7 @@
    5）swift-5.7-RELEASE-ubuntu20.04.tar.gz (https://www.swift.org/download/): download to the docker directory  
    6）rebar3 (https://github.com/erlang/rebar3): download, rename to 'rebar3' in the docker directory  
 2. Setup the Running and Compilation Environment:  
-   Install docker, run command `cd component_detection/docker`  
+   Install docker, run command `cd software_component_detection/docker`  
    1）run command `docker build . -t sca_env:release`  
    2）run command `docker run --name sca -it sca_env:release`  
    3）run command `docker exec -it sca /bin/bash`  
@@ -43,8 +43,10 @@
    | output_dir  | string      | False           | Output root directory, default: ‘../check_result’ |    
    | is_build    | bool        | False           | Whether to build the project, default: False             |   
    | is_skip     | bool        | False           | Whether to skip devDependencies, default: False     |  
-   | search_depth| int         | False           | Search depth, default: 3 (root search depth == 0)      |    
+   | search_depth| int         | False           | Search depth, default: 3 (root search depth == 0)      |
+   
    6）Output result (demo) [result.png](https://github.com/DRong1121/software_component_detection/result.png)
+
 4. Supported Languages and Detection Types：   
    | No.        | Language       | Detection Type      |  Config Files      | Package Managers     |   
    | :---------- | :---------- | :---------- | :-------------------- | :---------- |  
