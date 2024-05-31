@@ -29,13 +29,13 @@ Our Toolkit：
    2）run command `docker run --name sca -it sca_env:release`  
    3）run command `docker exec -it sca /bin/bash`  
 3. Use the Toolkit:  
-   1) Start and execute the 'sca' container  
-   2) Copy the 'core' directory to the 'home' directory in the 'sca' container(using the `docker cp` command)  
-   3) Run the following command once  
+   1）Start and execute the 'sca' container  
+   2）Copy the 'core' directory to the 'home' directory in the 'sca' container(using the `docker cp` command)  
+   3）Run the following command once  
    `find /home/core/executables -type f -print0 | xargs -0 dos2unix --`  
-   4) Run the command `cd /home/core`, the following command is an example of the toolkit execution  
+   4）Run the command `cd /home/core`, the following command is an example of the toolkit execution  
    `python3 scan.py -is_output=True -output_dir='../check_result' -check_dir='../extracted_folder/axios-0.19.2' -is_build=True -search_depth=1 -is_skip=False`  
-   5) Execution parameters   
+   5）Execution parameters   
    | Parameter Name      | Parameter Type     | Is Required      | Description               |   
    | :---------- | :---------- | :---------- | :-------------------- |     
    | check_dir   | string      | True           | 待测项目所在路径        |  
